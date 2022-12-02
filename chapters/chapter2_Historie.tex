@@ -8,7 +8,14 @@ Andererseits muss das Zielsystem bereits beim Compilationsvorgang bekannt sein u
 Durch den Einsatz von höheren Programmiersprachen wurde der Einsatz von Compilern nötig, um den verfassten Quellcode für die jeweiligen Zielsysteme in den geeigneten Maschinencode zu übersetzen. Die für den Menschen einfacher zu verstehenden Programmiersprachen (auch Hochsprachen) bieten die Möglichkeit ihre Logik für verschiedene Zielsysteme durch einen Compiler zu übersetzen und somit sowohl dem Menschen, als auch dem \ac{PC} ein gut lesbares Format vorzuhalten, \cite[vgl. Wagenknecht Hielscher, S.1ff]{wagenknecht_hielscher_2022}.\\
 Bereits Konrad Zuse setzte für seinen Zuse Z4 auf eine Art höhere Sprache, das sogenannte Plankalkül und wollte mit einem 'Planfertigungsgerät' automatisch von einem mathematischen Rechenplan einen Lochstreifen mit gestanztem Maschinenplan anfertigen, \cite[vgl. Heilige 2013, S.45]{Hellige2013}. Nach heutiger Terminologie ist dieses Planfertigungsgerät bereits als Compiler zu betrachten. \\
 Der erste Compiler A-0 wurde von Grace Hopper 1952 vorgestellt und erleichterte den Prozess der Programmierung hinlänglich, da statt direkter Maschinenbefehle nun Code aus verständlichen Algorithmen, die in einem Katalog zusammengefasst waren, aufgebaut werden konnten. Diese Bausteine wurden von A-0 aus dem Katalog abgerufen und der Code in korrekter Reihenfolge zusammen gesetzt. Benötigte Speicherbereiche wurden automatisch reserviert und die zugehörige Adressierung ebenfalls vom Compiler übernommen, \cite[vgl. Beyer 2012, S.222ff]{Beyer2012}. In der Weiterentwicklung, dem Prototypen B-0 konnten Befehle in verschiedenen menschlichen Sprachen (z.B. Englisch, Französisch, Deutsch) verwendet werden, die der Computer zu Maschinencode übersetzte, \cite[vg. Beyer 2012, S.271ff]{Beyer2012}.\\
-Über Compiler für die Sprachen Fortran und COBOL wurden die Compiler schlussendlich soweit entwickelt, wie wir sie heute kennen. 
+Über Compiler für die Sprachen Fortran und COBOL wurden die Compiler schlussendlich soweit entwickelt, wie wir sie heute kennen. \\
+Bekannte Sprachen, die auf einen Compiler setzen sind: 
+\begin{itemize}
+    \item C/C++
+    \item Go
+    \item Pascal
+    \item COBOL
+\end{itemize}
 
 \subsection{Interpreter} \label{ch_interpreter}
 Da die Klasse der Interpreter nicht konkret Teil dieser Arbeit, aber mit den Themen eng verwandt ist, soll hier kurz auf den Aufbau und die Geschichte eingegangen werden. \\
@@ -16,13 +23,27 @@ Ein Interpreter führt portionsweise Aktionen aus und interpretiert so zur Laufz
 Außerdem können Interpretersprachen plattformunabhängig ausgeliefert werden, da die Interpretation erst auf dem Zielsystem ausgeführt wird und im Vorfeld nicht bekannt sein muss, auf welchem \ac{OS} der Quellcode ausgeführt werden soll. Das Zielsystem kann den Code somit für sich selbst interpretiere und die Instruktionen somit auch direkt für die eigene Hardware zielgerichtet umsetzen. \\
 Andererseits entsteht durch die Interpretation zur Laufzeit ein erhöhter Aufwand, der Interpretersprachen grundsätzlich eine langsamere Ausführung beschert, als im Vorfeld zu Maschinencode kompilierten Programmen.\\
 Interpreter entstanden ungefähr zur selben Zeit, wie die ersten Compiler und wurden erfunden, um zwischen verschiedenen Low-level-Sprache zu übersetzen und die allgemeine Programmierung zu vereinfachen, \cite[vgl. Bennet 1952, S.81 f]{Bennett1952}. \\
-Der erste Interpreter wurde dabei von John Russel zusammen der Sprache LISP auf einem IBM 704 entwickelt, der dazu diente Lisp-Programme zu evaluieren, \cite[vgl. Stoyan S.299ff]{Stoyan1984}
+Der erste Interpreter wurde dabei von John Russel zusammen der Sprache LISP auf einem IBM 704 entwickelt, der dazu diente Lisp-Programme zu evaluieren, \cite[vgl. Stoyan S.299ff]{Stoyan1984}\\
+Bekannte Sprachen, die auf einen Interpreter setzen sind: 
+\begin{itemize}
+    \item PHP
+    \item Perl
+    \item Python
+    \item BASIC
+\end{itemize}
 
 \subsection{Just-in-time-Kompilierung} \label{ch_jit}
 Die Implementierungsform der \ac{JIT}-Kompilierung versucht die Vorteile von \autoref{ch_interpreter} und \autoref{ch_compiler} zu vereinen. Einerseits wird der Code vorab zu Bytecode kompiliert, um eine schnellere Ausführung in einer \ac{VM} zu ermöglichen, andererseits wird der Code zur Laufzeit direkt auf der Zielmaschine von Bytecode in Maschinencode kompiliert, was den Vorteil bietet, dass dieser speziell für den ausführenden Prozessor optimiert werden kann.\\
 \ac{JIT} vereint damit den Vorteil der Plattformunabhängigkeit des Interpreters mit dem Geschwindigkeitsvorteil des Compilers. Die Vorteile können dabei nicht genauso stark ausgespielt werden, wie bei den ursprünglichen Implementierungsformen, aber es wird ein sehr guter Mittelweg geschaffen, um sich die Leistung moderner Rechner zunutze zu machen und direkt auf dem Zielsystem zu compilieren, um die Geschwindigkeit des ausgeführten Programmteils maßgeblich zu erhöhen, als auch die Auslieferung von direkt übersetzbaren Bytecode, der die Software plattformunabhängig macht.\\
 Die Anfänge des Gedanken der \ac{JIT}-Kompilierung reichen zurück bis in die 1960er Jahre, aber erst in den 1980er Jahren wurde durch Peter Deutsch und Allan Schiffmann eine Publikation basierend auf der Entwicklung mit der Sprache Smalltalk-80. Smalltalk ist eine objektorientierte Sprache, die in einer \ac{VM} (siehe \autoref{jit_vm}) ausgeführt wird und kommt damit dem Prinzip der \ac{JIT}-Kompilierung sehr nahe. Deutsch und Schiffmann beschleunigten die Ausführungszeit von Smalltalk-Code auf einem Mikroprozessor mit geringer Leistung durch Konvertierung des Codes in verschiedene Varianten, z.B. v-Code (virtuell) und n-Code (nativ), um so eine bestmögliche Performance bei begrenzter Hardware zu erreichen, \cite[vgl. Deutsch und Schiffmann 1984, S.1ff]{Deutsch_Schiffmann1984}.\\
-Für die Sprache Java wurden einige Aspekte aus Smalltalk-80 abgeleitet, wie zum Beispiel der Einsatz der \ac{VM}. 1999 wurde hierfür die \ac{VM} 'HotSpot' entwickelt, die einen \ac{JIT}-Compiler enthält. Anhand von heuristischen Methoden werden hier Codeblöcke, die oft ausgeführt werden ('Hot Spots'), kompiliert und somit die Ausführung von Programmen beschleunigt \cite[vgl. Kotzmann und Wimmer 2008, S.2ff]{KotzmannWimmer2008}
+Für die Sprache Java wurden einige Aspekte aus Smalltalk-80 abgeleitet, wie zum Beispiel der Einsatz der \ac{VM}. 1999 wurde hierfür die \ac{VM} 'HotSpot' entwickelt, die einen \ac{JIT}-Compiler enthält. Anhand von heuristischen Methoden werden hier Codeblöcke, die oft ausgeführt werden ('Hot Spots'), kompiliert und somit die Ausführung von Programmen beschleunigt \cite[vgl. Kotzmann und Wimmer 2008, S.2ff]{KotzmannWimmer2008}\\
+Bekannte Sprachen, die auf \ac{JIT} setzen sind: 
+\begin{itemize}
+    \item Java
+    \item C\#
+    \item JavaScript
+    \item Ruby
+\end{itemize}
 
 \section{Programmausführung in der VM} \label{jit_vm}
 Durch die Dynamik einer Programmiersprache, zur Schaffung einer Plattformunabhängigkeit oder aus Sicherheitsgründen werden Programme heutzutage oftmals nicht mehr direkt vom Betriebssystem ausgeführt, sondern laufen in einer \ac{VM}, wie dies bereits bei Smaltalk-80 der Fall war. Dies verzögert jedoch die Ausführungszeit der Interpretation der Befehle. \\
