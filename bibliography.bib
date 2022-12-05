@@ -76,73 +76,87 @@
 }
 
 @inproceedings{Stoyan1984,
-author = {Stoyan, Herbert},
-title = {Early LISP History (1956 - 1959)},
-year = {1984},
-isbn = {0897911423},
-publisher = {Association for Computing Machinery},
-address = {New York, NY, USA},
-url = {https://doi.org/10.1145/800055.802047},
-doi = {10.1145/800055.802047},
-abstract = {This paper describes the development of LISP from McCarthy's first research in the topic of programming languages for AI until the stage when the LISP1 implementation had developed into a serious program (May 1959). We show the steps that led to LISP and the various proposals for LISP interpreters (between November 1958 and May 1959). The paper contains some correcting details to our book (32).},
-booktitle = {Proceedings of the 1984 ACM Symposium on LISP and Functional Programming},
-pages = {299–310},
-numpages = {12},
-location = {Austin, Texas, USA},
-series = {LFP '84}
+  author    = {Stoyan, Herbert},
+  title     = {Early LISP History (1956 - 1959)},
+  year      = {1984},
+  isbn      = {0897911423},
+  publisher = {Association for Computing Machinery},
+  address   = {New York, NY, USA},
+  url       = {https://doi.org/10.1145/800055.802047},
+  doi       = {10.1145/800055.802047},
+  abstract  = {This paper describes the development of LISP from McCarthy's first research in the topic of programming languages for AI until the stage when the LISP1 implementation had developed into a serious program (May 1959). We show the steps that led to LISP and the various proposals for LISP interpreters (between November 1958 and May 1959). The paper contains some correcting details to our book (32).},
+  booktitle = {Proceedings of the 1984 ACM Symposium on LISP and Functional Programming},
+  pages     = {299–310},
+  numpages  = {12},
+  location  = {Austin, Texas, USA},
+  series    = {LFP '84}
 }
 
 @inproceedings{Deutsch_Schiffmann1984,
-author = {Deutsch, L. Peter and Schiffman, Allan M.},
-title = {Efficient Implementation of the Smalltalk-80 System},
-year = {1984},
-isbn = {0897911253},
-publisher = {Association for Computing Machinery},
-address = {New York, NY, USA},
-url = {https://doi.org/10.1145/800017.800542},
-doi = {10.1145/800017.800542},
-abstract = {The Smalltalk-80* programming language includes dynamic storage allocation, full upward funargs, and universally polymorphic procedures; the Smalltalk-80 programming system features interactive execution with incremental compilation, and implementation portability. These features of modern programming systems are among the most difficult to implement efficiently, even individually. A new implementation of the Smalltalk-80 system, hosted on a small microprocessor-based computer, achieves high performance while retaining complete (object code) compatibility with existing implementations. This paper discusses the most significant optimization techniques developed over the course of the project, many of which are applicable to other languages. The key idea is to represent certain runtime state (both code and data) in more than one form, and to convert between forms when needed.},
-booktitle = {Proceedings of the 11th ACM SIGACT-SIGPLAN Symposium on Principles of Programming Languages},
-pages = {297–302},
-numpages = {6},
-location = {Salt Lake City, Utah, USA},
-series = {POPL '84}
+  author    = {Deutsch, L. Peter and Schiffman, Allan M.},
+  title     = {Efficient Implementation of the Smalltalk-80 System},
+  year      = {1984},
+  isbn      = {0897911253},
+  publisher = {Association for Computing Machinery},
+  address   = {New York, NY, USA},
+  url       = {https://doi.org/10.1145/800017.800542},
+  doi       = {10.1145/800017.800542},
+  abstract  = {The Smalltalk-80* programming language includes dynamic storage allocation, full upward funargs, and universally polymorphic procedures; the Smalltalk-80 programming system features interactive execution with incremental compilation, and implementation portability. These features of modern programming systems are among the most difficult to implement efficiently, even individually. A new implementation of the Smalltalk-80 system, hosted on a small microprocessor-based computer, achieves high performance while retaining complete (object code) compatibility with existing implementations. This paper discusses the most significant optimization techniques developed over the course of the project, many of which are applicable to other languages. The key idea is to represent certain runtime state (both code and data) in more than one form, and to convert between forms when needed.},
+  booktitle = {Proceedings of the 11th ACM SIGACT-SIGPLAN Symposium on Principles of Programming Languages},
+  pages     = {297–302},
+  numpages  = {6},
+  location  = {Salt Lake City, Utah, USA},
+  series    = {POPL '84}
 }
 
 @article{KotzmannWimmer2008,
-author = {Kotzmann, Thomas and Wimmer, Christian and M\"{o}ssenb\"{o}ck, Hanspeter and Rodriguez, Thomas and Russell, Kenneth and Cox, David},
-title = {Design of the Java HotSpot™ Client Compiler for Java 6},
-year = {2008},
-issue_date = {May 2008},
-publisher = {Association for Computing Machinery},
-address = {New York, NY, USA},
-volume = {5},
-number = {1},
-issn = {1544-3566},
-url = {https://doi.org/10.1145/1369396.1370017},
-doi = {10.1145/1369396.1370017},
-abstract = {Version 6 of Sun Microsystems' Java HotSpot™ VM ships with a redesigned version of the client just-in-time compiler that includes several research results of the last years. The client compiler is at the heart of the VM configuration used by default for interactive desktop applications. For such applications, low startup and pause times are more important than peak performance. This paper outlines the new architecture of the client compiler and shows how it interacts with the VM. It presents the intermediate representation that now uses static single-assignment (SSA) form and the linear scan algorithm for global register allocation. Efficient support for exception handling and deoptimization fulfills the demands that are imposed by the dynamic features of the Java programming language. The evaluation shows that the new client compiler generates better code in less time. The popular SPECjvm98 benchmark suite is executed 45\% faster, while the compilation speed is also up to 40\% better. This indicates that a carefully selected set of global optimizations can also be integrated in just-in-time compilers that focus on compilation speed and not on peak performance. In addition, the paper presents the impact of several optimizations on execution and compilation speed. As the source code is freely available, the Java HotSpot™ VM and the client compiler are the ideal basis for experiments with new feedback-directed optimizations in a production-level Java just-in-time compiler. The paper outlines research projects that add fast algorithms for escape analysis, automatic object inlining, and array bounds check elimination.},
-journal = {ACM Trans. Archit. Code Optim.},
-month = {may},
-articleno = {7},
-numpages = {32},
-keywords = {compiler, register allocation, just-in-time compilation, intermediate representation, Java, optimization, deoptimization}
+  author     = {Kotzmann, Thomas and Wimmer, Christian and M\"{o}ssenb\"{o}ck, Hanspeter and Rodriguez, Thomas and Russell, Kenneth and Cox, David},
+  title      = {Design of the Java HotSpot™ Client Compiler for Java 6},
+  year       = {2008},
+  issue_date = {May 2008},
+  publisher  = {Association for Computing Machinery},
+  address    = {New York, NY, USA},
+  volume     = {5},
+  number     = {1},
+  issn       = {1544-3566},
+  url        = {https://doi.org/10.1145/1369396.1370017},
+  doi        = {10.1145/1369396.1370017},
+  abstract   = {Version 6 of Sun Microsystems' Java HotSpot™ VM ships with a redesigned version of the client just-in-time compiler that includes several research results of the last years. The client compiler is at the heart of the VM configuration used by default for interactive desktop applications. For such applications, low startup and pause times are more important than peak performance. This paper outlines the new architecture of the client compiler and shows how it interacts with the VM. It presents the intermediate representation that now uses static single-assignment (SSA) form and the linear scan algorithm for global register allocation. Efficient support for exception handling and deoptimization fulfills the demands that are imposed by the dynamic features of the Java programming language. The evaluation shows that the new client compiler generates better code in less time. The popular SPECjvm98 benchmark suite is executed 45\% faster, while the compilation speed is also up to 40\% better. This indicates that a carefully selected set of global optimizations can also be integrated in just-in-time compilers that focus on compilation speed and not on peak performance. In addition, the paper presents the impact of several optimizations on execution and compilation speed. As the source code is freely available, the Java HotSpot™ VM and the client compiler are the ideal basis for experiments with new feedback-directed optimizations in a production-level Java just-in-time compiler. The paper outlines research projects that add fast algorithms for escape analysis, automatic object inlining, and array bounds check elimination.},
+  journal    = {ACM Trans. Archit. Code Optim.},
+  month      = {may},
+  articleno  = {7},
+  numpages   = {32},
+  keywords   = {compiler, register allocation, just-in-time compilation, intermediate representation, Java, optimization, deoptimization}
 }
 
 @inproceedings{Sipek_2020,
-	doi = {10.23919/mipro48935.2020.9245290},
-  
-	url = {https://doi.org/10.23919%2Fmipro48935.2020.9245290},
-  
-	year = 2020,
-	month = {sep},
-  
-	publisher = {{IEEE}
-},
-  
-	author = {M. Sipek and D. Muharemagic and B. Mihaljevic and A. Radovan},
-  
-	title = {Enhancing Performance of Cloud-based Software Applications with {GraalVM} and Quarkus},
-  
-	booktitle = {2020 43rd International Convention on Information, Communication and Electronic Technology ({MIPRO})}
+  doi       = {10.23919/mipro48935.2020.9245290},
+  url       = {https://doi.org/10.23919%2Fmipro48935.2020.9245290},
+  year      = 2020,
+  month     = {sep},
+  publisher = {{IEEE}
+               },
+  author    = {M. Sipek and D. Muharemagic and B. Mihaljevic and A. Radovan},
+  title     = {Enhancing Performance of Cloud-based Software Applications with {GraalVM} and Quarkus},
+  booktitle = {2020 43rd International Convention on Information, Communication and Electronic Technology ({MIPRO})}
 }
+
+@book{HuntBinu_2011,
+  author    = {Hunt, Charlie and John, Binu},
+  title     = {Java Performance},
+  year      = {2011},
+  isbn      = {0137142528},
+  publisher = {Prentice Hall Press},
+  address   = {USA},
+  edition   = {1st},
+  abstract  = {The definitive master class in performance tuning Java applicationsif you love all the gory details, this is the book for you. James Gosling, creator of the Java Programming Language Improvements in the Java platform and new multicore/multiprocessor hardware have made it possible to dramatically improve the performance and scalability of Java software. Java Performance covers the latest Oracle and third-party tools for monitoring and measuring performance on a wide variety of hardware architectures and operating systems. The authors present dozens of tips and tricks youll find nowhere else. Youll learn how to construct experiments that identify opportunities for optimization, interpret the results, and take effective action. Youll also find powerful insights into microbenchmarkingincluding how to avoid common mistakes that can mislead you into writing poorly performing software. Then, building on this foundation, youll walk through optimizing the Java HotSpot VM, standard and multitiered applications; Web applications, and more. Coverage includes Taking a proactive approach to meeting application performance and scalability goals Monitoring Java performance at the OS level in Windows, Linux, and Oracle Solaris environmentsUsing modern Java Virtual Machine (JVM) and OS observability tools to profile running systems, with almost no performance penaltyGaining under the hood knowledge of the Java HotSpot VM that can help you address most Java performance issues Integrating JVM-level and application monitoringMastering Java method and heap (memory) profilingTuning the Java HotSpot VM for startup, memory footprint, response time, and latencyDetermining when Java applications require rework to meet performance goalsSystematically profiling and tuning performance in both Java SE and Java EE applicationsOptimizing the performance of the Java HotSpot VM Using this book, you can squeeze maximum performance and value from all your Java applicationsno matter how complex they are, what platforms theyre running on, or how long youve been running them.}
+}
+
+ @misc{westrelin_2022,
+  title   = {Runtime profiling in openjdk's Hotspot JVM},
+  url     = {https://developers.redhat.com/articles/2021/11/18/runtime-profiling-openjdks-hotspot-jvm#},
+  journal = {Red Hat Developer},
+  author  = {Westrelin, Roland},
+  year    = {2022},
+  month   = {Oct}
+} 
