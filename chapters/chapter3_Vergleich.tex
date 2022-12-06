@@ -2,7 +2,7 @@
 
 \section{Programmausführung in der VM} \label{jit_vm}
 Durch die Dynamik einer Programmiersprache, zur Schaffung einer Plattformunabhängigkeit oder aus Sicherheitsgründen werden Programme heutzutage oftmals nicht mehr direkt vom Betriebssystem ausgeführt, sondern laufen in einer \ac{VM}, wie dies bereits bei Smaltalk-80 der Fall war. Dies verzögert jedoch die Ausführungszeit der Interpretation der Befehle. \\
-Durch die Anwendung von \ac{JIT} wird hier versucht Performance zu gewinnen und somit diesen Nachteil auszugleichen. Folgend sollen die beiden \ac{VM}'s 'HotSpot' und 'Graal' aus dem Kontext der Sprache Java näher vorgestellt werden. 
+Durch die Anwendung von \ac{JIT} wird hier versucht Performance zu gewinnen und somit diesen Nachteil auszugleichen. Folgend sollen die beiden \ac{VM}'s 'HotSpot' und 'GraalVM' aus dem Kontext der Sprache Java näher vorgestellt werden. 
 
 \subsection{HotSpot}
 Java übersetzt den Code der Hochsprache generell zuerst in Bytecode, der in der \ac{VM} ausgeführt werden kann. Diese \ac{VM} wird speziell für das korrespondierende \ac{OS} bereitgestellt und kann auf dieser Plattform den erzeugten Bytecode korrekt ausführen. 'HotSpot' von Oracle ist eine dieser \ac{VM}'s für die Sprache Java. \\
@@ -32,7 +32,7 @@ Profilbasierte Optimierungen sind nicht unbedingt an \ac{JIT}-Compiler gebunden,
 
 
 \subsection{GraalVM }
-Die GraalVM  ist ein System, das die \ac{VM} HotSpot ergänzen soll und dazu ein breites Subsystem an Tools für mehr Flexibilität mitbringt (siehe \autoref{arch_graal}). GraalVM zeichnet sich dadurch aus, dass es komplett selbst in Java geschrieben ist. \\
+Die GraalVM ("General Recursive Applicative and Algorithmic Language Virtual Machine")  ist ein System, das die \ac{VM} HotSpot ergänzen soll und dazu ein breites Subsystem an Tools für mehr Flexibilität mitbringt (siehe \autoref{arch_graal}). GraalVM zeichnet sich dadurch aus, dass es komplett selbst in Java geschrieben ist. \\
 \\
 \begin{figure}[ht]
     \begin{center}
