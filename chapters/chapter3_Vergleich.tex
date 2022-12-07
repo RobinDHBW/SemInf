@@ -71,14 +71,41 @@ Der Compiler, der bei diesem Vorgang der \ac{AOT}-Kompilierung genutzt wird unte
 Für sowohl \ac{AOT}, als auch \ac{JIT} gibt es Anwendungsgebiete, in denen sie ihre Vorteile stark ausspielen können. Folgend sollen einige grundlegende Szenarien dargelegt werden und anschließend auch auf einige direkte Beispiele eingegangen werden. 
 
 \subsection{AOT}
-Es gibt viele Bereiche, in denen die Implementierungsform der \ac{AOT}-Kompilierung unerlässlich ist. Gerade auf Leistungsschwachen Plattformen kann durch schlanke Applikationen in C, die zu einer nativen Applikation kompiliert werden, eine sehr gute Performance erreicht werden. Dies gilt z.B. für embedded-Geräte und auch Steuergeräte im Bereich der Steuerungstechnik. Die Hardware ist hier bereits im Vorfeld ganz genau bekannt und es kann explizit für genau dieses Setting kompiliert und optimiert werden. Das Set an Maschinenbefehlen, die das Zielsystem unterstützt, ist bekannt und kann optimal ausgenutzt werden, um eine bestmögliche Performance zu erhalten. \\
+Es gibt viele Bereiche, in denen die Implementierungsform der \ac{AOT}-Kompilierung unerlässlich ist. Gerade auf Leistungsschwachen Plattformen kann durch schlanke Applikationen in C, die zu einer nativen Applikation kompiliert werden, eine sehr gute Performance erreicht werden. Dies gilt z.B. für embedded-Geräte und auch Mikrocontroller im Bereich der Steuerungstechnik. Auf diesen Plattformen sind Ressourcen, wie Rechenpower und Arbeitsspeicher meist teuer und deshalb stark begrenzt. Der Einsatz eines \ac{JIT}-Compilers mit großem Overhead ist daher nicht möglich oder nicht zu empfehlen. Die Hardware ist hier bereits im Vorfeld ganz genau bekannt und es kann explizit für genau dieses Setting kompiliert und optimiert werden. Das Set an Maschinenbefehlen, die das Zielsystem unterstützt, ist bekannt und kann optimal ausgenutzt werden, um eine bestmögliche Performance zu erhalten. \\
 Solche Systeme werden außerdem nicht so oft mit Updates versorgt und die Dauer der Kompilierung für eine native Applikation spielt hier so keine größere Rolle. Die Funktion der Software ist einfach gehalten und einmal aufgespielt können sehr viele Zyklen durchlaufen werden, die alle immer gleich schnell ausgeführt werden. Da es sich außerdem z.T. um sicherheitskritische Software handelt, soll diese zur Laufzeit nicht veränderbar sein. Nach der Kompilierung kann die Software auch ein Auditverfaren durchlaufen, um geprüft und freigegeben werden zu können. Hier darf im Nachhinein kein Einfluss mehr darauf genommen werden können, was nur bei einer statischen Kompilierung der Fall ist.\\
-Wenn die Hardware also im Vorfeld bekannt ist und Performance über der Flexibilität steht, dann ist die \ac{AOT}-Kompilierung das Mittel der Wahl.
+Architekturen ohne Betriebssystem als Zwischenschicht können keine virtuelle Maschine bereitstellen und sind daher auf die direkte Ausführung von Maschinencode auf dem Prozessor angewiesen. Hier kommt nur ein \ac{AOT} kompiliertes Programm infrage.\\
+Wenn die Hardware also im Vorfeld bekannt ist und mit wenig Ressourcen eine hohe Performance erzielt werden soll, dann ist die \ac{AOT}-Kompilierung das Mittel der Wahl.
 
 \subsection{JIT}
-Im Gegensatz zur \ac{AOT} findet die \ac{JIT}-Kompilierung ihren Nutzen eher in der dynamischen Welt der Computer-Software findet. Hier kommt leistungsfähige Hardware zum Einsatz, die aber von PC zu PC unterschiedlich ist. Eine hohe Dynamik und Flexibilität bei der Kompilierung ist gefragt und es können im Vorfeld schlichtweg nicht alle differenzierten Typen abgedeckt werden. \\
-Um Kompromisse mit Leistungsverzicht zu vermeiden, kann man auf \ac{JIT}-Kompilierung setzen und somit die Sorge der hardwarespezifischen Kompilierung 'Just-In-Time' direkt auf der Zielmaschine maßgeschneidert für die Zielhardware vornehmen. Für Software-Entwickler macht dies den Entwicklungsprozess erheblich einfacher, da über die Zielhardware nichts bekannt sein muss und mit einer einzigen Software alle Zielplattformen abgedeckt werden können. \\
-Ist die Hardware im Vorfeld also unbekannt und gegenüber einem Interpreter soll trotzdem ein Leistungsvorsprung erreicht werden, so ist die beste Option die Nutzung eines \ac{JIT}-Compilers, der erst zur Laufzeit die notwendigen Optimierungen vornimmt. 
+Im Gegensatz zur \ac{AOT} findet die \ac{JIT}-Kompilierung ihren Nutzen in der dynamischen Welt der Computer-Software, oftmals in \ac{GUI}-Anwendungen und vor allen Dingen mit einem Betriebssystem dazwischen, dass die virtuelle Maschine zur Ausführung bereitstellen kann. Hier kommt leistungsfähige Hardware zum Einsatz, die aber von PC zu PC unterschiedlich ist. Eine hohe Dynamik und Flexibilität bei der Kompilierung ist gefragt und es können im Vorfeld schlichtweg nicht alle differenzierten Typen abgedeckt werden. \\
+Um Kompromisse mit Leistungsverzicht zu vermeiden, kann man auf \ac{JIT}-Kompilierung setzen und somit die Sorge der hardwarespezifischen Kompilierung 'Just-In-Time' direkt auf der Zielmaschine maßgeschneidert für die Zielhardware vornehmen. Das System kennt die eigene Hardware und kann den Maschinencode anhand des \ac{IS} des eingebauten Prozessors maßgeschneidert zur Verfügung stellen. Für Software-Entwickler macht dies den Entwicklungsprozess erheblich einfacher, da über die Zielhardware nichts bekannt sein muss und mit einer einzigen Software alle Zielplattformen abgedeckt werden können. \\
+Die \ac{JIT}-Kompilierung bringt auch den Vorteil mit sich, dass man eine fertige Software nicht auf neue Hardware portieren muss, sondern ein Programm auch zehn Jahre später auf neuester Technik noch funktioniert, da die Hardware das nötige Wissen zur Kompilierung des Bytecodes selbst mit bringt.\\
+Ist die Hardware im Vorfeld also unbekannt oder soll divers pro Zielsystem ein Maximum an Optimierung erreicht werden, so ist die beste Option die Nutzung eines \ac{JIT}-Compilers, der erst zur Laufzeit die notwendigen Optimierungen vornimmt. 
+
+\section{Vergleich}
+
+    \begin{table}[ht]
+            \begin{center}
+                \begin{tabular}{| c | c |}
+                    \hline
+                    \textbf{AOT}                                & \textbf{JIT}                \\
+                    \hline
+                    \hline
+                    Hohe Performance & Hohe Performance\\
+                    \hline
+                    Geringer Overhead & Hoher Overhead\\
+                    \hline
+                    Langsame Kompilierung & Schnelle Kompilierung \\
+                    \hline
+                    Plattformabhängig & Plattformabhängig \\
+                    \hline
+                    Kein OS nötig & OS nötig\\        
+        \hline
+                \end{tabular}
+        \end{center}
+        \caption{Vergleich AOT vs. JIT}
+    \label{vergleich_table}
+\end{table}
 
 \section{Beispiele}
 % TODO: AOT --> Apple, Arduino, Go, Android (in between) JIT --> SAP, .Net CLR
