@@ -127,6 +127,24 @@ Wie bereits beschrieben, sind \ac{AOT} kompilierte Anwendungen plattformabhängi
 Spezielle Plattformen mit spezieller Hardware haben oft ganz andere Anforderungen und hier kann die \ac{AOT}-Kompilierung das absolute Mittel der Wahl sein. Zusätzlich kann die \ac{AOT}-Kompilierung für spezielle Plattformen auch das einzige Mittel sein, wenn z.B. kein Betriebssystem, wie bei einem Mikrocontroller vorhanden ist. \ac{JIT}-Compiler benötigen ein installiertes \ac{OS} auf dem Zielhost, um durch dieses die Anwendung ausführen zu lassen und den Bytecode für die Zielplattform zu kompilieren. 
 
 \section{Beispiele}
+\subsection{Apple}
+Apple setzt mit Swift auf eine eigene Programmiersprache, die auf \ac{JIT} in einer \ac{LLVM} setzt und durch XCode mit einer eigener \ac{IDE} und einem dazugehörigen Toolset flankiert wird. Apps können nur über den App-Store verteilt werden und müssen zuvor ein Audit durchlaufen, um Qualität und vor allem Sicherheit sicherzustellen, \cite[vgl. Apple Inc. 2022, Webseite abgerufen am 03.12.2022]{swift_compiler} 
+
+\subsection{Android}
+Bei Android war früher ein \ac{JIT}-Compiler namens 'Dalvik' auf Basis von Java im Einsatz, der jedoch mit Android 5 von der \ac{ART} abgelöst wurde. Hierbei kam es zu einer grundsätzlichen Änderung der Implementierungsform auf \ac{AOT}. Dadurch wollte man schnellere Ladezeiten von Apps erreichen, da diese bereits voll kompiliert auf dem Endgerät vorliegt. Mit der \ac{ART} hielten C und C++ als Standardsprachen für die Programmierung von Apps Einzug. Die Kompilierung von Apps erfolgt allerdings nicht im Vorfeld, sondern wird bei der Installation auf dem Endgerät durchgeführt.\\
+Wie in \autoref{art_jit} zu sehen, wird durch den \ac{AOT}-Compiler Code zu .oat-Dateien kompiliert, die dann durch die \ac{ART} ausgeführt werden. Im Laufe der Zeit wurde dieses Verfahren jedoch weiter durch einen \ac{JIT}-Compiler ergänzt. Über sogenannte .dex-Files kann über die \ac{ART} Code zur Laufzeit kompiliert oder durch einen Interpreter ausgeführt werden und so Just-In-Time der Anwendung angefügt werden. Hierbei geht es einmal, um die Steigerung von Performance während der Laufzeit durch Profiling und andererseits, um die einfache Verteilung von Updates, die zusätzlich zur Installationsdatei als .dex-File geleifert werden können und durch den \ac{JIT}-Compiler der Anwendung hinzugefügt werden, \cite[vgl. Android 2022, Webseite abgerufen am 03.12.2022]{android_runtime}.
+\begin{figure}[ht]
+    \begin{center}
+        \includegraphics[width=0.6\textwidth]{assets/img/jit-arch.png}
+        \caption{Android Runtime JIT, \cite[Quelle: Android 2022, Webseite abgerufen am 03.12.2022]{android_runtime}}
+        \label{art_jit}
+    \end{center}
+\end{figure}
+
+\subsection{Arduino}
+Bei dem Arduino handelt es sich um einen Mikrocontroller aus dem Bereich des Physical Computing, der auf einer OpenSource-Plattform basiert. Der Mikrocontroller verfügt über einen Prozessor mit bis zu 16MHz Takt und 32Kb Flashspeicher, [vgl. Arduino Datasheet, S.2 in \autoref{arduino_datasheet}]. Hierbei handelt es sich um ein Endgerät ohne eigenes Betriebssystem, das über einen Entwickler-PC direkt mit Maschinencode bespielt werden muss. Der Code selbst ist in einen 'Initial'-Bereich, der zu Anfang einmal durchlaufen wird und einen 'Loop'-Bereich, der zur Laufzeit in einer Endlos-Schleife zyklisch durchlaufen wird, aufgeteilt.\\
+Als Entwicklungssprache kommt C/C++ zum Einsatz und fällt ganz klassisch in das Anwendungsgebiet des \ac{AOT}-Compilers.
+
 % TODO: AOT --> Apple, Arduino, Go, Android (in between) JIT --> SAP, .Net CLR
 
-\section{Empfehlung nach Einsatzzweck} % TODO --> sollte das ins Fazit?
+% \section{Empfehlung nach Einsatzzweck} % TODO --> sollte das ins Fazit?
