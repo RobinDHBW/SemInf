@@ -5,7 +5,7 @@ Durch die Dynamik einer Programmiersprache, zur Schaffung einer Plattformunabhä
 Durch die Anwendung von \ac{JIT} wird hier versucht Performance zu gewinnen und somit diesen Nachteil auszugleichen. Folgend sollen die beiden \ac{VM}'s 'HotSpot' und 'GraalVM' aus dem Kontext der Sprache Java näher vorgestellt werden.
 
 \subsection{HotSpot}
-Java übersetzt den Code der Hochsprache generell zuerst in Bytecode, der in der \ac{VM} ausgeführt werden kann. Diese \ac{VM} wird speziell für das korrespondierende \ac{OS} bereitgestellt und kann auf dieser Plattform den erzeugten Bytecode korrekt ausführen. 'HotSpot' von Oracle ist eine dieser \ac{VM}'s für die Sprache Java. \\
+Java übersetzt den Code der Hochsprache generell zuerst in Bytecode, der in der \ac{VM} ausgeführt werden kann. Diese \ac{VM} wird speziell für das korrespondierende \ac{OS} bereitgestellt und kann auf dieser Plattform den erzeugten Bytecode korrekt ausführen. 'HotSpot' von Oracle ist eine dieser \ac{VM}'s für die Sprache Java.\\
 \\
 \begin{figure}[ht]
     \begin{center}
@@ -106,7 +106,7 @@ gegenübergestellt werden. Da es sich lediglich um einen Vergleich handelt, der 
             \hline
             Langsame Kompilierung & Schnelle Kompilierung \\
             \hline
-            Plattformabhängig     & Plattformabhängig     \\
+            Plattformabhängig     & Plattformunabhängig     \\
             \hline
             Kein OS nötig         & OS nötig              \\
             \hline
@@ -123,7 +123,7 @@ Beide Implementierungsformen von Compilern bieten in den kompilierten Endanwendu
 Deutliche Unterschiede für Entwickler ergeben sich bei den Kompilierungszeiten. 
 Durch die einmalige \ac{AOT}-Kompilierung werden hier auch einmalig viele Ressourcen und Rechenkraft und auch mehr Zeit benötigt, um aus dem Code ein fertiges Programm zu erzeugen. Auch bei kleineren Änderungen oder Patches kann nicht differentiell nur der neu hinzugefügte Code kompiliert werden, sondern es muss die gesamte Anwendung neu kompiliert werden, was das Management von Updates und Patches für Softwarepakete verkompliziert, da auch für Tests lange auf die Kompilierung gewartet werden muss. Weiterhin kann sich diese Zeit multiplizieren, wenn für verschiedene Plattformen entwickelt wird, da hier für jede Plattform ein eigenes separates Build erzeugt werden muss. 
 Der \ac{JIT}-Compiler ist hier im Vorteil und bietet den Entwicklern mehr Flexibilität. Auch hier muss einmalig die ganze Anwendung kompiliert werden, doch statt direkt in Maschinencode für ein spezifisches Zielsystem wird in Bytecode kompiliert, der dann auf dem jeweiligen Zielsystem für dieses Just-In-Time zur Laufzeit kompiliert wird. Es wird also Zeit bei der erstmaligen Kompilierung gespart und auch durch den Umstand, dass eine Kompilierung für alle Plattformen ausreichend ist. Bei Änderungen und Patches muss hingegen auch hier die gesamte Anwendung neu kompiliert werden.\\
-Wie bereits beschrieben, sind \ac{AOT} kompilierte Anwendungen plattformabhängig und müssen für jede Zielplattform separat kompiliert werden. In der heutigen Zeit sollen Anwendungen oft plattformübergreifend einsetzbar sein, um sowohl mobile Endgeräte mit den verschiedenen System von Apple und Android abzudecken, als auch Desktop-PC's bedienen zu können. Unabhängige Kompilierung, wie im Falle des \ac{JIT}-Compilers macht hier sehr viel Sinn, um normale Useranwendungen zu entwickeln, \cite[vgl. Kotzmann Wimmer, 2008, S.18ff]{KotzmannWimmer2008} \\
+Wie bereits beschrieben, sind \ac{AOT} kompilierte Anwendungen plattformabhängig und müssen für jede Zielplattform separat kompiliert werden. In der heutigen Zeit sollen Anwendungen oft plattformübergreifend einsetzbar sein, um sowohl mobile Endgeräte mit den verschiedenen System von Apple und Android abzudecken, als auch Desktop-PC's bedienen zu können. Unabhängige Kompilierung, wie im Falle des \ac{JIT}-Compilers macht hier sehr viel Sinn, um normale Useranwendungen zu entwickeln, \cite[vgl. Kotzmann Wimmer, 2008, S.18ff]{KotzmannWimmer2008}. \\
 Spezielle Plattformen mit spezieller Hardware haben oft ganz andere Anforderungen und hier kann die \ac{AOT}-Kompilierung das absolute Mittel der Wahl sein, \cite[vgl. Louis 2016, S.1]{louis_2016}. Zusätzlich kann die \ac{AOT}-Kompilierung für spezielle Plattformen auch das einzige Mittel sein, wenn z.B. kein Betriebssystem, wie bei einem Mikrocontroller vorhanden ist. \ac{JIT}-Compiler benötigen ein installiertes \ac{OS} auf dem Zielhost, um durch dieses die Anwendung ausführen zu lassen und den Bytecode für die Zielplattform zu kompilieren. 
 
 \section{Beispiele}
@@ -133,7 +133,7 @@ Der Zwischencode für die \ac{LLVM} wird dabei durch den Compiler 'Clang' aus de
 
 \subsection{Android} \label{android_bsp}
 Bei Android war früher ein \ac{JIT}-Compiler namens 'Dalvik' auf Basis von Java im Einsatz, der jedoch mit Android 5 von der \ac{ART} abgelöst wurde. Hierbei kam es zu einer grundsätzlichen Änderung der Implementierungsform auf \ac{AOT}. Dadurch wollte man schnellere Ladezeiten von Apps erreichen, da diese bereits voll kompiliert auf dem Endgerät vorliegt. Mit der \ac{ART} hielten C und C++ als Standardsprachen für die Programmierung von Apps Einzug. Die Kompilierung von Apps erfolgt allerdings nicht im Vorfeld, sondern wird bei der Installation auf dem Endgerät durchgeführt.\\
-Wie in \autoref{art_jit} zu sehen, wird durch den \ac{AOT}-Compiler Code zu .oat-Dateien kompiliert, die dann durch die \ac{ART} ausgeführt werden. Im Laufe der Zeit wurde dieses Verfahren jedoch weiter durch einen \ac{JIT}-Compiler ergänzt. Über sogenannte .dex-Files kann über die \ac{ART} Code zur Laufzeit kompiliert oder durch einen Interpreter ausgeführt werden und so Just-In-Time der Anwendung angefügt werden. Hierbei geht es einmal, um die Steigerung von Performance während der Laufzeit durch Profiling und andererseits, um die einfache Verteilung von Updates, die zusätzlich zur Installationsdatei als .dex-File geleifert werden können und durch den \ac{JIT}-Compiler der Anwendung hinzugefügt werden, \cite[vgl. Android 2022, Webseite abgerufen am 03.12.2022]{android_runtime}.
+Wie in \autoref{art_jit} zu sehen, wird durch den \ac{AOT}-Compiler Code zu .oat-Dateien kompiliert, die dann durch die \ac{ART} ausgeführt werden. Im Laufe der Zeit wurde dieses Verfahren jedoch weiter durch einen \ac{JIT}-Compiler ergänzt. Über sogenannte .dex-Files kann über die \ac{ART} Code zur Laufzeit kompiliert oder durch einen Interpreter ausgeführt werden und so Just-In-Time der Anwendung angefügt werden. Hierbei geht es einmal, um die Steigerung von Performance während der Laufzeit durch Profiling und andererseits, um die einfache Verteilung von Updates, die zusätzlich zur Installationsdatei als .dex-File geliefert werden können und durch den \ac{JIT}-Compiler der Anwendung hinzugefügt werden, \cite[vgl. Android 2022, Webseite abgerufen am 03.12.2022]{android_runtime}.
 \begin{figure}[ht]
     \begin{center}
         \includegraphics[width=0.6\textwidth]{assets/img/jit-arch.png}
